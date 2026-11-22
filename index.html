@@ -1,0 +1,666 @@
+<!doctype html>
+<html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>UI 设计作品集</title>
+<style>
+*{box-sizing:border-box}html,body{margin:0;height:100%;overflow:hidden}body{background:#171945;color:#fff;font:14px system-ui}button,a{font:inherit;color:inherit}button{cursor:pointer}button:focus-visible,a:focus-visible{outline:3px solid #fff;outline-offset:4px}
+main{position:fixed;inset:0;overflow:hidden;background:radial-gradient(ellipse at 2% 9%,#7582bc 0%,transparent 24%),radial-gradient(ellipse at 99% 0%,#543d82 0%,transparent 25%),linear-gradient(#151941 15%,#1b1b50 57%,#773b79 86%,#843c72);touch-action:none}.stars,.clouds{position:absolute;inset:0;pointer-events:none}.stars i{position:absolute;background:#fff;border-radius:50%;box-shadow:0 0 7px 1px #bacdff}.clouds{background:radial-gradient(ellipse 15% 7% at 22% 46%,#8baaff70,transparent),radial-gradient(ellipse 8% 5% at 89% 75%,#9daaff70,transparent);filter:blur(12px);animation:drift 14s ease-in-out infinite alternate}@keyframes drift{to{transform:translateX(4%)}}
+.moon{position:absolute;left:-27px;top:9%;width:64px;height:64px;border-radius:50%;background:radial-gradient(circle at 61% 37%,#bab4a2 0 7%,transparent 8%),radial-gradient(circle at 74% 68%,#c9c2a9 0 8%,transparent 9%),radial-gradient(circle at 40% 48%,#c6bda4 0 11%,transparent 12%),#f1eacb;box-shadow:0 0 45px #f3efbc88}
+.scene{position:absolute;left:52%;top:49%;width:580px;height:830px;transform:translate(-50%,-50%) scale(var(--scale,1));transform-origin:center;pointer-events:none}.mast,.cap,.base,.column,.halo,.beam{position:absolute;left:50%;transform:translateX(-50%)}.column{top:708px;width:174px;height:400px;border-radius:0 0 40% 40%;background:linear-gradient(90deg,#221641,transparent 34%,#ff9671 51%,transparent 60%,#231338),repeating-linear-gradient(90deg,#251754 0 2px,#67469b 3px 7px);box-shadow:0 0 28px #f465a077}.mast{top:65px;width:91px;height:260px;clip-path:polygon(47% 0,54% 0,59% 42%,66% 72%,100% 100%,0 100%,33% 72%,42% 42%);background:linear-gradient(90deg,#28204a 4%,#644aa9 27%,#aab6ff 46%,#f9eaff 53%,#7957a7 60%,#39225f 76%)}.light{position:absolute;left:calc(50% - 7px);top:61px;background:#ff334a;width:14px;height:14px;border-radius:50%;box-shadow:0 0 22px #ff2336;animation:pulse 2s alternate infinite}@keyframes pulse{to{opacity:.4}}.halo{top:56px;width:99px;height:38px;border:1px solid #9caeffaa;border-radius:50%}.halo:nth-of-type(2){top:25px;width:240px;height:98px}.halo:nth-of-type(3){top:-9px;width:385px;height:153px;opacity:.38}.halo.signal{top:183px;width:114px;height:34px;border:3px solid #e2f4ff;box-shadow:0 0 16px #9ad7ff;animation:signal 4s linear infinite}.signal b{position:absolute;top:12px;right:-5px;width:10px;height:10px;border-radius:50%;background:#fff;box-shadow:0 0 17px 5px #ff8be5}@keyframes signal{50%{transform:translateX(-50%) rotate(-9deg) scaleX(.73)}}
+.cap{top:296px;width:395px;height:92px;border-radius:50%;background:radial-gradient(ellipse at 46% 16%,#fbd9ff 1%,#ab81e5 6%,#592c79 13%,#ab4f9c 54%,#f7a5e6 78%);border-top:5px dotted #fff6dd;box-shadow:0 -4px 15px #c8c8ffdd,inset 0 5px 10px #e4d4ff}.brand{position:absolute;top:341px;left:50%;width:320px;transform:translateX(-50%);text-align:center;padding:9px 6px 19px;color:#291b34;background:linear-gradient(90deg,#c284b8,#f6cce8,#d69ac9);border-radius:50% 50% 28% 28% / 23% 23% 18% 18%;font: bold 21px 'Arial Narrow',sans-serif;white-space:nowrap;overflow:hidden}.roof{position:absolute;top:384px;left:50%;transform:translateX(-50%);width:459px;height:116px;border-radius:50%;background:radial-gradient(ellipse at 53% 85%,#23184e 35%,#4e488f 59%,#a8b7ff 88%);box-shadow:0 -3px 11px #b8c0ff}.barrel{position:absolute;left:50%;top:418px;transform:translateX(-50%);width:454px;height:258px;border-radius:50% / 14%;background:linear-gradient(90deg,#a9a4ff44,transparent 12%,#0c052450 52%,#21103a20 82%,#a2a7f574),repeating-linear-gradient(90deg,#201247 0 3px,#473188 5px 13px);overflow:hidden;box-shadow:inset 0 -15px 25px #a945b0}.barrel:after{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent 0 57px,#140c34 59px 61px)}.carousel{position:absolute;left:50%;top:449px;width:0;height:175px;perspective:790px;perspective-origin:center 42%;z-index:3}.rotor{position:absolute;transform-style:preserve-3d;width:0;height:175px}.card{position:absolute;left:-118px;top:0;width:236px;height:168px;padding:12px 15px;border-radius:27px;border:3px double #ffffff80;background:linear-gradient(125deg,#fff3,transparent 58%,#0002),var(--card);color:#142019;display:flex;flex-direction:column;justify-content:space-between;text-align:left;transform:rotateY(var(--angle)) translateZ(171px);backface-visibility:hidden;box-shadow:0 0 15px #d3deff55,inset 0 0 16px #fff4;pointer-events:auto}.card:hover{filter:brightness(1.14)}.card small{font:8px ui-monospace,monospace;text-transform:uppercase}.card strong{align-self:center;font:italic 700 51px Georgia,serif;line-height:.85;letter-spacing:-3px;white-space:pre-line}.card:nth-child(1) strong{font:900 38px 'Arial Narrow',sans-serif;letter-spacing:-2px}.base{top:699px;width:552px;height:83px;border-radius:0 0 50% 50%;background:radial-gradient(ellipse at 50% 0%,#693165,#271644 74%,#6f3976);box-shadow:0 10px 14px #3c19564d}.contact{position:absolute;z-index:4;left:50%;transform:translateX(-50%);top:655px;width:558px;height:66px;border:5px solid #ff955e;border-width:5px 0;border-radius:50% / 12%;background:linear-gradient(90deg,#af3b4c,#ff5f38 23%,#ff7849 55%,#f55537 80%,#b83b48);color:#210f19;font:900 24px Impact,'Arial Narrow',sans-serif;overflow:hidden;white-space:nowrap;pointer-events:auto;box-shadow:0 0 12px #ff775866}.contact span{display:inline-block;transform:scaleY(1.35)}
+header,footer{position:absolute;z-index:5;left:18px;right:18px;display:flex;align-items:center;justify-content:space-between}header{top:15px}footer{bottom:22px;align-items:end}.round,.pill{background:#1b143b99;border:1px solid #ffffff36;border-radius:99px;padding:10px 15px;min-height:42px}.round{min-width:44px}.logo{position:absolute;left:50%;transform:translateX(-50%);font-size:42px;line-height:1;color:#ff9cde;text-shadow:0 0 18px #ff72c0}.logo sup{font:800 18px monospace;color:#ffe76f}.meta{font:700 13px/1.5 ui-monospace,monospace;letter-spacing:.8px;text-transform:uppercase}.meta span{opacity:.68}.meta:last-child{text-align:right}.hints{display:flex;gap:9px}.hints .pill{min-height:0;padding:7px 14px}.hints span{color:#e6d8f6}dialog{border:1px solid #bdabed66;border-radius:25px;background:#231b49;color:#fff;padding:30px;width:min(460px,calc(100vw - 32px));box-shadow:0 12px 80px #100921}dialog::backdrop{background:#130d29a0;backdrop-filter:blur(7px)}dialog h1{font:italic 700 52px Georgia;margin:14px 0}dialog p{line-height:1.6;color:#e9dbf8;white-space:pre-line}dialog nav{display:grid;gap:8px}dialog nav button{text-align:left}.close{float:right}.flash .stars{filter:brightness(1.65)}@media(max-width:640px){.meta{font-size:9px;letter-spacing:.2px}footer{bottom:15px;left:12px;right:12px}.hints{position:absolute;bottom:35px;left:50%;transform:translateX(-50%);white-space:nowrap}.scene{left:50%}}@media(prefers-reduced-motion:reduce){*,*:before,*:after{animation:none!important}}
+.brand-track{display:flex;width:max-content;animation:brand-scroll 48s linear infinite}
+.brand-track span{padding-inline:18px}
+@keyframes brand-scroll{to{transform:translateX(-50%)}}
+body:has(dialog[open]) :is(.brand-track,.contact-track){animation-play-state:paused}
+.carousel{left:50%;top:440px;width:530px;height:205px;transform:translateX(-50%);perspective:none;overflow:hidden}
+.rotor{left:50%;transform-style:flat}
+.card{top:14px;backface-visibility:visible;transform-origin:center}
+.contact-track{display:flex;width:max-content;pointer-events:none;animation:brand-scroll 36s linear infinite}
+.contact .contact-track span{padding-inline:12px;transform:scaleY(1.35)}
+.cap::after,.barrel::before,.column::after{content:'';position:absolute;inset:0;border-radius:inherit;pointer-events:none;animation:light-breathe 5s ease-in-out infinite}
+.cap::after{box-shadow:0 -6px 25px #c8ceff,inset 0 5px 13px #fff1ff}
+.barrel::before{z-index:1;background:radial-gradient(ellipse 20px 50% at 8% 88%,#ffe2ff,#ff55c166 45%,transparent),radial-gradient(ellipse 17px 45% at 92% 14%,#d8f6ff,#838bff66 50%,transparent);animation-delay:-1.6s}
+.column::after{background:radial-gradient(ellipse 19px 150px at 52% 17%,#ffd3ab,#ff864d55 45%,transparent);animation-delay:-3.1s}
+.signal b{animation:light-breathe 3.8s ease-in-out infinite}
+@keyframes light-breathe{0%,100%{opacity:.23}50%{opacity:1}}
+.plate{display:none}
+main.has-plate .plate{display:block;position:absolute;left:50%;top:50%;width:1280px;height:956px;transform:translate(-50%,-50%) scale(var(--plate-scale));background:url("portfolio-tower.png") center/100% 100%;pointer-events:none}
+main.has-plate :is(.mast,.halo,.cap,.roof,.barrel,.base,.column,.moon){visibility:hidden}
+main.has-plate .light{top:62px}
+.scene{left:calc(50% + 22px * var(--scale));top:calc(50% - 7px * var(--scale));width:580px;height:830px}
+.carousel{top:415px;width:580px;height:230px;overflow:hidden;mask-image:linear-gradient(to right,transparent,#000 12%,#000 88%,transparent)}
+.card{height:170px;width:249px;left:-124.5px;top:25px;padding:13px 16px;border-radius:28px;border:3px double #ffffffb0;box-shadow:0 2px 15px #deb9ff80,inset 0 0 24px #fff4}
+.card strong,.card:nth-child(1) strong{font:italic 700 44px/1.05 Georgia,'Microsoft YaHei',serif;letter-spacing:-2px;white-space:normal;text-align:center}
+.card small{font:9px ui-monospace,monospace;letter-spacing:.12em}
+.card::after{content:'✦';position:absolute;right:13px;top:28px;font-size:17px;opacity:.55}
+.brand,.contact{background:transparent;box-shadow:none;border:none;overflow:hidden;color:#231122}
+.brand{width:320px;height:76px;top:324px;border-radius:0;padding:0;clip-path:path('M 2 36 Q 160 -11 318 36 L 318 70 Q 160 37 2 70 Z')}
+.contact{width:552px;height:61px;top:655px;border-radius:50% / 13%;padding:0}
+main:not(.has-plate) .brand{background:linear-gradient(90deg,#c284b8,#f6cce8,#d69ac9)}
+main:not(.has-plate) .contact{background:linear-gradient(90deg,#af3b4c,#ff603b 25%,#ff804f 65%,#b83b48)}
+.orbit-label{position:absolute;left:50%;top:50%;width:max-content;white-space:nowrap;pointer-events:none;font-weight:900;letter-spacing:.025em}
+.brand canvas{display:block;width:100%;height:100%;pointer-events:none}
+.contact .orbit-label{font:900 22px Impact,'Microsoft YaHei',sans-serif}
+.tower-glow{position:absolute;pointer-events:none;border-radius:50%;mix-blend-mode:screen;animation:light-breathe 5s ease-in-out infinite}
+.tower-glow.antenna{top:250px;left:255px;width:70px;height:70px;background:radial-gradient(ellipse,#baecffb0,transparent 67%);animation-delay:-.7s}
+.tower-glow.rim{top:300px;left:99px;width:388px;height:52px;background:radial-gradient(ellipse at 26% 54%,#fff5ffa0,transparent 25%),radial-gradient(ellipse at 83% 60%,#cab4ffa0,transparent 25%);animation-delay:-2.1s}
+.tower-glow.drum{top:554px;left:54px;width:460px;height:120px;background:radial-gradient(ellipse 24px 51px at 8% 69%,#ffcaffd0,#fb48ff42 60%,transparent),radial-gradient(ellipse 20px 51px at 83% 53%,#b5d5ffba,transparent);animation-delay:-3.5s}
+.tower-glow.base-light{top:699px;left:260px;width:67px;height:167px;background:radial-gradient(ellipse,#ffd6a5a8,transparent 67%);animation-delay:-1.5s}
+.logo{font-size:36px}.meta{font-size:11px}.scene .contact:focus-visible{outline-offset:-5px}
+dialog{max-height:calc(100dvh - 32px);overflow:auto}dialog h1{font:700 clamp(30px,7vw,46px)/1.2 Georgia,'Microsoft YaHei',sans-serif}dialog nav button:hover{background:#574579}dialog p{font-size:15px}
+@media(max-width:640px){main.has-plate .plate{top:47%}.scene{top:calc(47% - 7px * var(--scale))}}
+.carousel{width:680px;mask-image:none}
+.card{
+  width:294px;left:-147px;height:170px;padding:14px 20px;border-radius:25px;
+  border:1px solid color-mix(in srgb,var(--card),white 52%);
+  background-image:var(--leather-grain),linear-gradient(120deg,#fff5,transparent 42%,#2516302d),linear-gradient(var(--card),var(--card));
+  background-blend-mode:soft-light,normal,normal;
+  box-shadow:inset 0 1px 2px #ffffffe0,inset 0 -3px 6px #301c3830,
+    var(--edge-x) 4px 0 color-mix(in srgb,var(--card),#453355 34%),
+    var(--edge-x) 5px 0 color-mix(in srgb,var(--card),white 21%),0 7px 16px #16082b72;
+  overflow:hidden;
+}
+.card::before{content:'';position:absolute;inset:4px;border-radius:20px;border:1px solid #fff9;box-shadow:inset 0 0 1px #2b173d94;pointer-events:none}
+.card::after{content:'+';font:400 18px ui-monospace,monospace;color:#132022;opacity:.8}
+.card strong,.card:nth-child(1) strong{font:italic 700 49px/.88 Georgia,'Microsoft YaHei',serif;letter-spacing:-.09em;max-width:100%;transform:skewX(-5deg)}
+.card small:last-child{align-self:end}
+.card:nth-child(2) strong{text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:7px}
+.card:nth-child(4) strong{font-size:45px}
+.plate-mark{position:absolute;left:13px;bottom:10px;font:9px ui-monospace,monospace;letter-spacing:.14em}
+.card.curved{left:-340px;top:0;width:680px;height:230px;padding:0;border:0;border-radius:0;background:none;box-shadow:none}
+.card.curved::before,.card.curved::after{content:none}
+.card.curved canvas{display:block;width:100%;height:100%}
+.card.curved:focus-visible,.card.curved:hover{filter:brightness(1.09)}
+.detail-flight{position:fixed;z-index:20;pointer-events:none;overflow:hidden;transform-origin:center;border-radius:22px;box-shadow:0 18px 60px #180d4777}
+.detail-flight canvas{width:100%;height:100%;object-fit:contain;display:block}
+.card.lifted{opacity:0}
+dialog.expanded{width:min(1100px,calc(100vw - 36px));height:86dvh;max-height:none;margin:auto;padding:clamp(25px,6vw,88px);background:var(--detail-color);color:#211d29;border:1px solid #fff8}
+dialog.expanded::backdrop{background:#15103366;backdrop-filter:none}
+dialog.expanded h1{font:italic bold clamp(40px,8vw,104px)/.96 Georgia,'Microsoft YaHei',serif;max-width:850px}
+dialog.expanded p{color:inherit;font-size:clamp(16px,2vw,22px);max-width:60ch}
+dialog.expanded .close{background:#ffffff44;border-color:#25222c55}
+dialog.expanded nav a{width:fit-content;padding:12px 16px;border:1px solid #24222a7a;border-radius:32px;color:inherit}
+dialog.expanded.arriving{animation:detail-reveal 180ms ease-out both}
+@keyframes detail-reveal{from{opacity:0}to{opacity:1}}
+.tower-waves,.antenna-orbit{position:absolute;left:50%;pointer-events:none;z-index:1}
+.tower-waves{top:67px}
+.tower-waves i{position:absolute;left:-198px;top:-79px;width:396px;height:158px;border:2px solid #b2abff;border-radius:50%;box-shadow:0 0 6px #a497ff5d;opacity:0;animation:antenna-wave 4.8s linear infinite}
+.tower-waves i:nth-child(2){animation-delay:-1.6s}
+.tower-waves i:nth-child(3){animation-delay:-3.2s}
+@keyframes antenna-wave{0%{transform:scale(.12);opacity:0}12%{opacity:.88}68%{opacity:.5}100%{transform:scale(1.17);opacity:0}}
+.antenna-orbit{top:196px;width:120px;height:36px;margin:-18px 0 0 -60px;border:2px solid #e1eaff;border-radius:50%;box-shadow:0 0 10px #7ab9ff88;animation:orbit-precession 6s ease-in-out infinite}
+.antenna-orbit i{position:absolute;left:0;top:0;width:9px;height:9px;border-radius:50%;background:var(--spark);box-shadow:0 0 7px 3px var(--spark),0 0 20px 6px var(--spark);offset-path:ellipse(59px 17px at 58px 16px);animation:orbit-travel 3.9s linear infinite}
+.antenna-orbit i:nth-child(1){--spark:#a5eeff}
+.antenna-orbit i:nth-child(2){--spark:#fff0a6;animation-delay:-1.3s}
+.antenna-orbit i:nth-child(3){--spark:#ff99ed;animation-delay:-2.6s}
+@keyframes orbit-travel{to{offset-distance:100%}}
+@keyframes orbit-precession{0%,100%{transform:rotate(8deg) scaleY(.92)}50%{transform:rotate(-10deg) scaleY(1.08)}}
+@media(prefers-reduced-motion:reduce){.tower-waves i:nth-child(2){opacity:.45;transform:scale(.72)}.antenna-orbit i:nth-child(2){offset-distance:33%}.antenna-orbit i:nth-child(3){offset-distance:66%}}
+.world{position:absolute;inset:0;pointer-events:none;transform-origin:50% 50%;transition:transform 650ms cubic-bezier(.22,.7,.23,1)}
+.document-pages{margin:24px calc(-1 * clamp(25px,6vw,88px));background:#fff;line-height:0}
+.document-pages img{display:block;width:100%;height:auto;margin:0}
+.document-pages a{display:block}
+dialog.has-document h1{font-size:clamp(27px,3vw,44px);line-height:1.25;margin-right:40px}
+dialog.has-document .close{position:sticky;top:0;z-index:2;background:#ffffffd9}
+.world .plate{mask-image:linear-gradient(to right,transparent,#000 25%,#000 76%,transparent)}
+@media(min-width:761px){
+  body.detail-open .world{transform:translateX(-39vw) scale(.7)}
+  dialog.expanded{width:min(820px,44vw);margin:auto;padding:clamp(28px,3.5vw,64px)}
+  dialog.expanded h1{font-size:clamp(36px,5vw,76px)}
+  dialog.expanded .document-pages{margin-inline:calc(-1 * clamp(28px,3.5vw,64px))}
+}
+@media(prefers-reduced-motion:reduce){.world{transition:none}}
+dialog.expanded.has-document{padding:22px 28px}
+dialog.expanded.has-document h1{font-size:clamp(25px,2.7vw,38px);line-height:1.3;margin:8px 48px 16px 0}
+dialog.expanded.has-document .document-pages{margin:0 -28px -22px}
+</style>
+<main id="sky" class="has-plate"><div class="plate" aria-hidden="true"></div><div class="stars" aria-hidden="true"></div><div class="clouds"></div><div class="moon"></div>
+<div class="scene"><div class="halo"></div><div class="halo"></div><div class="halo"></div><div class="column"></div><div class="mast"></div><div class="light"></div><div class="halo signal"><b></b></div><div class="cap"></div><div class="brand"></div><div class="roof"></div><div class="barrel"></div><div class="carousel"><div class="rotor"></div></div><div class="base"></div><div class="tower-glow antenna"></div><div class="tower-glow rim"></div><div class="tower-glow drum"></div><div class="tower-glow base-light"></div><button class="contact" id="contact"></button></div>
+<header><button class="round" id="menu" aria-label="打开目录">☰</button><div class="logo" aria-hidden="true">☾<sup>✦</sup></div><div><button class="round" id="sound" aria-label="播放背景音乐" title="播放背景音乐" aria-pressed="false">♫̸</button> <button class="round" id="glow" aria-label="Toggle starlight" aria-pressed="false">✧</button></div></header>
+<footer><div class="meta" id="location"></div><div class="hints"><span class="pill">滚动 / 拖动旋转</span><button class="pill" id="explore">浏览作品集</button></div><div class="meta" id="clock"></div></footer></main>
+<dialog id="panel"><form method="dialog"><button class="round close" aria-label="关闭">×</button></form><h1 id="heading"></h1><p id="description"></p><nav id="links"></nav><div id="document-content"></div></dialog>
+<script>
+// Replace the information in this object to customize the site.
+const portfolioDocuments = {"operations": {"pdf": "portfolio-content/operations/original.pdf", "images": [{"src": "portfolio-content/operations/page-01-001.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-002.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-003.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-004.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-005.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-006.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-007.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-008.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-009.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-010.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-011.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-012.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-013.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-014.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-015.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/operations/page-01-016.jpg", "width": 1600, "height": 1321}]}, "ux": {"pdf": "portfolio-content/ux/original.pdf", "images": [{"src": "portfolio-content/ux/page-01-001.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-002.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-003.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-004.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-005.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-006.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-007.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-008.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-009.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-010.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-011.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-012.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-013.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-014.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-015.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-016.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-017.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-018.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-019.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-020.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-021.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-022.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-023.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-024.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-025.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-026.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-027.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-028.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-029.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-030.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-031.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-032.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-033.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-034.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-035.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-036.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/ux/page-01-037.jpg", "width": 1600, "height": 2070}]}, "resume": {"pdf": "portfolio-content/resume/original.pdf", "images": [{"src": "portfolio-content/resume/page-01-001.jpg", "width": 1600, "height": 2265}]}, "cover": {"pdf": "portfolio-content/cover/original.pdf", "images": [{"src": "portfolio-content/cover/page-01-001.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/cover/page-01-002.jpg", "width": 1600, "height": 694}]}, "beyond": {"pdf": "portfolio-content/beyond-e3c63234e2/original.pdf", "images": [{"src": "portfolio-content/beyond-e3c63234e2/page-01-001.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/beyond-e3c63234e2/page-01-002.jpg", "width": 1600, "height": 2400}, {"src": "portfolio-content/beyond-e3c63234e2/page-01-003.jpg", "width": 1600, "height": 129}]}};
+const content = {
+  studio: '熊壮',
+  role: 'UI / 视觉设计师',
+  ribbon: 'UI DESIGN PORTFOLIO',
+  coordinates: 'UI / VISUAL DESIGN',
+  city: '中国',
+  timeZone: 'Asia/Shanghai',
+  status: '个人作品集网站',
+  phone: '13264763621',
+  email: 'xiongzhuang3621@163.com',
+  contact: 'CONTACT ME',
+  contactTitle: '联系方式',
+  sections: [
+    { title: '封面', label: '封面', document: 'cover', color: '#9ce7f0', note: '界面设计 / 作品集',
+      body: '你好，我是「你的名字」，一名 UI 设计师。\n在这里放一段你的设计定位，以及你最想展示的设计方向。' },
+    { title: '个人介绍', label: '个人介绍', document: 'resume', color: '#d3e77e', note: '关于我 / 设计理念',
+      body: '在这里填写你的设计方向、擅长的领域和常用工具，以及你如何与产品和研发团队合作。' },
+    { title: '乐铺APP UX项目改版', label: '乐铺APP\nUX项目改版', document: 'ux', color: '#f2b4db', note: '职业历程 / 工作经验',
+      body: '公司名称｜职位｜起止时间\n补充负责的产品、你的职责和已验证的成果。' },
+    { title: '大润发优鲜运营视觉项目', label: '大润发优鲜\n运营视觉项目', document: 'operations', color: '#d2bef7', note: '精选项目 / 设计案例',
+      body: '项目名称｜项目背景｜我的角色\n补充目标、关键设计决策、最终界面、结果及作品链接。' },
+    { title: '设计之外', label: '设计之外', document: 'beyond', color: '#f6cf91', note: '生活灵感 / 个人探索',
+      body: '在这里展示你的兴趣、个人实验或创作，以及它们怎样影响你的设计。' }
+  ]
+};
+const find = selector => document.querySelector(selector);
+function element(tag, value) {
+  const node = document.createElement(tag);
+  node.textContent = value;
+  return node;
+}
+function action(label, callback, className) {
+  const button = element('button', label);
+  button.className = className;
+  button.onclick = callback;
+  return button;
+}
+document.title = content.studio;
+const brand = find('.brand');
+const world = element('div', '');
+world.className = 'world';
+find('#sky').prepend(world);
+world.append(find('.plate'), find('.scene'));
+for (const effect of ['tower-waves', 'antenna-orbit']) {
+  const rings = element('div', '');
+  rings.className = effect;
+  rings.setAttribute('aria-hidden', 'true');
+  rings.append(element('i', ''), element('i', ''), element('i', ''));
+  find('.scene').append(rings);
+}
+const contact = find('#contact');
+brand.setAttribute('aria-label', content.ribbon);
+brand.setAttribute('role', 'img');
+contact.setAttribute('aria-label', content.contactTitle);
+function makeRing(container, label, count) {
+  return Array.from({length: count}, () => {
+    const tile = element('b', label);
+    tile.className = 'orbit-label';
+    tile.setAttribute('aria-hidden', 'true');
+    container.append(tile);
+    return tile;
+  });
+}
+const ribbonScreen = document.createElement('canvas');
+ribbonScreen.width = 640;
+ribbonScreen.height = 152;
+ribbonScreen.setAttribute('aria-hidden', 'true');
+brand.append(ribbonScreen);
+const ribbonContext = ribbonScreen.getContext('2d');
+const ribbonTexture = document.createElement('canvas');
+const textureContext = ribbonTexture.getContext('2d');
+const ribbonFont = "700 34px 'Arial Narrow', 'Microsoft YaHei', sans-serif";
+textureContext.font = ribbonFont;
+const labelWidth = Math.ceil(textureContext.measureText(content.ribbon).width);
+const repeatWidth = labelWidth + 88;
+ribbonTexture.width = repeatWidth * 2;
+ribbonTexture.height = 52;
+textureContext.font = ribbonFont;
+textureContext.textBaseline = 'middle';
+textureContext.fillStyle = '#231122';
+textureContext.fillText(content.ribbon, 0, 26);
+textureContext.fillText(content.ribbon, repeatWidth, 26);
+let previousRibbonAngle;
+function paintRibbon(rotation) {
+  if (rotation === previousRibbonAngle) return;
+  previousRibbonAngle = rotation;
+  const center = ribbonScreen.width / 2;
+  const radius = center - 4;
+  const phase = (rotation % 360) * Math.PI / 180;
+  const textureScale = repeatWidth * 5 / (2 * Math.PI);
+  ribbonContext.clearRect(0, 0, ribbonScreen.width, ribbonScreen.height);
+  for (let x = center - radius; x < center + radius; x++) {
+    const start = Math.asin((x - center) / radius);
+    const end = Math.asin((x + 1 - center) / radius);
+    const depth = Math.cos((start + end) / 2);
+    const offset = (start - phase) * textureScale + labelWidth / 2;
+    const sample = ((offset % repeatWidth) + repeatWidth) % repeatWidth;
+    const height = ribbonTexture.height * (.78 + .22 * depth);
+    const middle = 73 + (1 - depth) * 43;
+    ribbonContext.drawImage(ribbonTexture, sample, 0, (end - start) * textureScale,
+      ribbonTexture.height, x, middle - height / 2, 1, height);
+  }
+}
+const lowerRing = makeRing(contact, content.contact, 12);
+find('#location').append(element('div', content.studio), element('span', content.role));
+const panel = find('#panel');
+function openPanel(title, description, items = []) {
+  panel.classList.remove('has-document');
+  find('#document-content').replaceChildren();
+  panel.classList.remove('expanded', 'arriving');
+  find('#heading').textContent = title.replace(/\n/g, ' ');
+  find('#description').textContent = description;
+  find('#description').hidden = !description;
+  find('#links').replaceChildren(...items);
+  if (!panel.open) panel.showModal();
+  panel.scrollTop = 0;
+}
+function showDocument(key, title) {
+  if (!key) return;
+  const doc = portfolioDocuments[key];
+  panel.classList.add('has-document');
+  find('#description').hidden = true;
+  const pages = element('div', '');
+  pages.className = 'document-pages';
+  doc.images.forEach((page, index) => {
+    const link = element('a', '');
+    link.href = page.src;
+    link.target = '_blank';
+    link.rel = 'noopener';
+    link.setAttribute('aria-label', title + '，放大查看第' + (index + 1) + '部分');
+    const image = document.createElement('img');
+    image.src = page.src;
+    image.width = page.width;
+    image.height = page.height;
+    image.alt = title + ' · 第' + (index + 1) + '部分';
+    image.loading = index === 0 ? 'eager' : 'lazy';
+    image.decoding = 'async';
+    link.append(image);
+    pages.append(link);
+  });
+  find('#document-content').append(pages);
+}
+let transitioning = false;
+let activeDetail;
+function trembleScene() {
+  if (reducedMotion.matches) return;
+  document.querySelector('#sky').animate([
+    {transform:'scale(1.005) translate(0,0)'},
+    {transform:'scale(1.005) translate(-2px,1px) rotate(-.11deg)'},
+    {transform:'scale(1.004) translate(2px,-1px) rotate(.09deg)'},
+    {transform:'scale(1.002) translate(-1px,0)'},
+    {transform:'none'}
+  ], {duration:310,easing:'ease-out'});
+}
+function detailBounds() {
+  const desktop = matchMedia('(min-width:761px)').matches;
+  const width = desktop ? Math.min(820, innerWidth * .44) : Math.min(1100, innerWidth - 36);
+  return {left:(innerWidth-width)/2,top:innerHeight*.07,width,height:innerHeight*.86};
+}
+function flightFrame(rect, tilt = 0, radius = 22) {
+  return {left:rect.left+'px',top:rect.top+'px',width:rect.width+'px',height:rect.height+'px',
+    transform:`rotate(${tilt}deg)`,borderRadius:radius+'px'};
+}
+function flyDetail(detail, reverse) {
+  const {origin, color, face} = detail;
+  const end = detailBounds();
+  const middleWidth = Math.min(end.width * .62, Math.max(origin.width * 1.45, end.width * .45));
+  const middle = {left:Math.min(innerWidth-middleWidth-10,Math.max(origin.left+45,end.left+(end.width-middleWidth)*.82)),
+    top:origin.top+(end.top-origin.top)*.52-26,width:middleWidth,height:origin.height+(end.height-origin.height)*.25};
+  const flight = document.createElement('div');
+  flight.className = 'detail-flight';
+  flight.style.background = color;
+  flight.setAttribute('aria-hidden','true');
+  if (face) {
+    const artwork = document.createElement('canvas');
+    artwork.width = face.width;
+    artwork.height = face.height;
+    artwork.getContext('2d').drawImage(face,0,0);
+    flight.append(artwork);
+    artwork.animate([{opacity:1},{opacity:1,offset:.42},{opacity:0}],
+      {duration:570,direction:reverse?'reverse':'normal',fill:'both'});
+  }
+  document.body.append(flight);
+  const animation = flight.animate([
+    {...flightFrame(origin),easing:'cubic-bezier(.22,.55,.28,1)'},
+    {...flightFrame(middle,-13),offset:.52,easing:'cubic-bezier(.25,.55,.28,1)'},
+    flightFrame(end,0,22)
+  ], {duration:570,direction:reverse?'reverse':'normal',fill:'both'});
+  return animation.finished.finally(() => flight.remove());
+}
+async function showDetail(detail) {
+  if (transitioning || panel.open) return;
+  transitioning = true;
+  activeDetail = detail;
+  document.body.classList.add('detail-open');
+
+  try {
+    if (!reducedMotion.matches) {
+      detail.source?.classList.add('lifted');
+      trembleScene();
+      await flyDetail(detail,false);
+    }
+    openPanel(detail.title,detail.body,detail.items);
+    showDocument(detail.document, detail.title);
+    panel.style.setProperty('--detail-color',detail.color);
+    panel.classList.add('expanded','arriving');
+  } finally {
+    transitioning = false;
+  }
+}
+async function closeDetail(event) {
+  if (!activeDetail) return;
+  event.preventDefault();
+  if (transitioning) return;
+  const detail = activeDetail;
+  activeDetail = undefined;
+  transitioning = true;
+  panel.close();
+  document.body.classList.remove('detail-open');
+  try {
+    if (!reducedMotion.matches) await flyDetail(detail,true);
+  } finally {
+    resumeAt = performance.now() + 600;
+    detail.source?.classList.remove('lifted');
+    transitioning = false;
+  }
+}
+panel.addEventListener('cancel', closeDetail);
+panel.querySelector('form').addEventListener('submit', closeDetail);
+let pressedOutsidePanel = false;
+function isOutsidePanel(event) {
+  const bounds = panel.getBoundingClientRect();
+  return event.clientX < bounds.left || event.clientX > bounds.right ||
+    event.clientY < bounds.top || event.clientY > bounds.bottom;
+}
+panel.addEventListener('pointerdown', event => {
+  pressedOutsidePanel = event.button === 0 && isOutsidePanel(event);
+});
+panel.addEventListener('pointercancel', () => {
+  pressedOutsidePanel = false;
+});
+panel.addEventListener('click', event => {
+  const closeFromOutside = pressedOutsidePanel && isOutsidePanel(event);
+  pressedOutsidePanel = false;
+  if (!closeFromOutside || transitioning || !panel.open) return;
+  if (activeDetail) {
+    closeDetail(event);
+  } else {
+    panel.close();
+    resumeAt = performance.now() + 600;
+  }
+});
+const showSection = section => {
+
+  openPanel(section.title, section.body);
+  if (section.document) {
+    panel.style.setProperty('--detail-color', section.color);
+    panel.classList.add('expanded');
+    showDocument(section.document, section.title);
+  }
+};
+function showContact() {
+
+  openPanel(content.contactTitle, content.studio + ' · ' + content.city, contactLinks());
+}
+function contactLinks() {
+  const phone = element('a', '电话 ' + content.phone);
+  phone.href = 'tel:' + content.phone;
+  const email = element('a', '邮箱 ' + content.email);
+  email.href = 'mailto:' + content.email;
+  return [phone, email];
+}
+function showMenu() {
+  if (transitioning) return;
+
+  openPanel(content.studio, '', [
+    ...content.sections.map(section => action(section.title.replace(/\n/g, ' '), () => showSection(section), 'pill')),
+    action(content.contactTitle, showContact, 'pill')
+  ]);
+}
+contact.onclick = () => {
+  showDetail({title:content.contactTitle,body:content.studio+' · '+content.city,items:contactLinks(),
+    color:'#ff8148',origin:contact.getBoundingClientRect()});
+};
+find('#menu').onclick = find('#explore').onclick = showMenu;
+const rotor = find('.rotor');
+const grain = document.createElement('canvas');
+grain.width = grain.height = 96;
+const grainContext = grain.getContext('2d');
+const grainPixels = grainContext.createImageData(96, 96);
+let grainSeed = 72633;
+for (let pixel = 0; pixel < 96 * 96; pixel++) {
+  grainSeed = (Math.imul(grainSeed, 1664525) + 1013904223) >>> 0;
+  const tone = grainSeed >>> 24;
+  const offset = pixel * 4;
+  grainPixels.data.set([tone, tone, tone, 72], offset);
+}
+grainContext.putImageData(grainPixels, 0, 0);
+const cardRadius = 246;
+const cardWidth = 294;
+const cardHeight = 176;
+const halfArc = cardWidth / (2 * cardRadius);
+function createCardFace(section, index) {
+  const face = document.createElement('canvas');
+  face.width = cardWidth * 2;
+  face.height = cardHeight * 2;
+  const ctx = face.getContext('2d');
+  ctx.scale(2, 2);
+  ctx.beginPath();
+  ctx.roundRect(0, 0, cardWidth, cardHeight, 25);
+  ctx.clip();
+  ctx.fillStyle = section.color;
+  ctx.fillRect(0, 0, cardWidth, cardHeight);
+  ctx.fillStyle = ctx.createPattern(grain, 'repeat');
+  ctx.globalCompositeOperation = 'soft-light';
+  ctx.fillRect(0, 0, cardWidth, cardHeight);
+  ctx.globalCompositeOperation = 'source-over';
+  const light = ctx.createLinearGradient(0, 0, cardWidth, cardHeight);
+  light.addColorStop(0, '#ffffff59');
+  light.addColorStop(.45, '#ffffff05');
+  light.addColorStop(1, '#22172c42');
+  ctx.fillStyle = light;
+  ctx.fillRect(0, 0, cardWidth, cardHeight);
+  ctx.beginPath();
+  ctx.roundRect(2, 2, cardWidth - 4, cardHeight - 4, 23);
+  ctx.lineWidth = 4;
+  ctx.strokeStyle = '#34234148';
+  ctx.stroke();
+  ctx.beginPath();
+  ctx.roundRect(6, 5, cardWidth - 12, cardHeight - 11, 20);
+  ctx.lineWidth = 1.4;
+  ctx.strokeStyle = '#fff9';
+  ctx.stroke();
+  ctx.fillStyle = '#182321';
+  ctx.font = '9px ui-monospace, monospace';
+  ctx.fillText(section.note, 18, 22);
+  ctx.fillText('第 ' + (index + 1) + ' 章', 18, 156);
+  ctx.textAlign = 'right';
+  ctx.fillText('点击查看 →', cardWidth - 18, 156);
+  ctx.font = '19px ui-monospace, monospace';
+  ctx.fillText('+', cardWidth - 18, 47);
+  const lines = section.label.split('\n');
+  ctx.textAlign = 'center';
+  ctx.textBaseline = 'middle';
+  const titleSize = lines.length > 2 ? 25 : lines.length > 1 ? 30 : 40;
+  ctx.font = '600 ' + titleSize + 'px "Microsoft YaHei", "PingFang SC", sans-serif';
+  lines.forEach((line, lineIndex) => {
+    ctx.fillText(line, cardWidth / 2, 87 + (lineIndex - (lines.length - 1) / 2) * (titleSize + 6), cardWidth - 32);
+  });
+  return face;
+}
+const cards = content.sections.map((section, index) => {
+  const face = createCardFace(section, index);
+  const card = action('', () => {
+    const {left,top,scale} = projectedCardBounds(card);
+    showDetail({title:section.title,body:section.body,document:section.document,color:section.color,face,source:card,
+      origin:{left:left + card.visibleLeft*scale,top:top+24*scale,
+        width:(card.visibleRight-card.visibleLeft)*scale,height:cardHeight*scale}});
+  }, 'card curved');
+  card.setAttribute('aria-label', section.title);
+  const screen = document.createElement('canvas');
+  screen.width = 1360;
+  screen.height = 460;
+  screen.setAttribute('aria-hidden', 'true');
+  card.append(screen);
+  rotor.append(card);
+  return {card, context: screen.getContext('2d'), face};
+});
+function projectedCardBounds(card) {
+  const rect = card.getBoundingClientRect();
+  return {left:rect.left,top:rect.top,scale:rect.width/680};
+}
+function paintCard({card, context, face}, turn) {
+  const theta = Math.atan2(Math.sin(turn), Math.cos(turn));
+  const start = Math.max(-Math.PI / 2, theta - halfArc);
+  const end = Math.min(Math.PI / 2, theta + halfArc);
+  const visible = end > start;
+  card.style.visibility = visible ? 'visible' : 'hidden';
+  card.tabIndex = visible && Math.cos(theta) > .25 ? 0 : -1;
+  if (!visible) return;
+  const left = 340 + Math.sin(start) * cardRadius;
+  const right = 340 + Math.sin(end) * cardRadius;
+  card.visibleLeft = left;
+  card.visibleRight = right;
+  card.style.clipPath = `inset(18px ${680 - right}px 21px ${left}px)`;
+  context.clearRect(0, 0, 1360, 460);
+  for (let column = Math.floor(left * 2); column < Math.ceil(right * 2); column++) {
+    const x = Math.max(left, column / 2);
+    const nextX = Math.min(right, (column + 1) / 2);
+    const arc = Math.asin(Math.max(-1, Math.min(1, (x - 340) / cardRadius)));
+    const nextArc = Math.asin(Math.max(-1, Math.min(1, (nextX - 340) / cardRadius)));
+    const depth = Math.cos((arc + nextArc) / 2);
+    const sample = (arc - theta + halfArc) * cardRadius * 2;
+    const sampleWidth = (nextArc - arc) * cardRadius * 2;
+    const y = 24 + (1 - depth) * 16;
+    const height = cardHeight * (.87 + .13 * depth);
+    context.drawImage(face, sample, 0, sampleWidth, face.height,
+      x * 2, y * 2, (nextX - x) * 2, height * 2);
+  }
+}
+let angle = 0, target = 0, lastFrame, resumeAt = 0, lastCardAngle;
+const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+function draw(now) {
+  const elapsed = lastFrame === undefined ? 0 : Math.max(0, Math.min(now - lastFrame, 50));
+  lastFrame = now;
+  if (!reducedMotion.matches && !panel.open && !transitioning && now >= resumeAt &&
+      !find('.card:focus-visible')) {
+    const speed = find('.scene:hover') ? .75 : 1;
+    const drift = elapsed * .008 * speed;
+    angle += drift;
+    target += drift;
+  }
+  if (!transitioning && !panel.open) {
+    angle = reducedMotion.matches || Math.abs(target-angle)<.08 ? target : angle + (target-angle)*(1-Math.exp(-elapsed/105));
+  }
+  if (angle !== lastCardAngle) {
+    lastCardAngle = angle;
+    cards.forEach((card, index) => {
+      paintCard(card, angle * Math.PI / 180 + (index - .5) * 2 * Math.PI / cards.length);
+    });
+  }
+  paintRibbon(-angle);
+  paintRing(lowerRing, 270, -5, 1.4);
+  requestAnimationFrame(draw);
+}
+function paintRing(labels, radius, curvature, height) {
+  labels.forEach((label, index) => {
+    const theta = angle * Math.PI / 180 + index * 2 * Math.PI / labels.length;
+    const depth = Math.cos(theta);
+    label.style.visibility = depth > 0 ? 'visible' : 'hidden';
+    label.style.zIndex = Math.round(depth * 100);
+    const x = Math.sin(theta) * radius;
+    const y = (1 - depth) * curvature;
+    const tilt = Math.atan2(curvature * Math.sin(theta), radius * Math.max(.22, depth));
+    label.style.transform = `translate(-50%,-50%) translate(${x}px,${y}px) rotate(${tilt}rad) scale(${Math.max(0, depth)},${height})`;
+  });
+}
+function spin(amount) {
+  target += amount;
+  resumeAt = performance.now() + 1800;
+}
+draw(performance.now());
+const sky = find('#sky');
+function isOnSubject(event) {
+  if (event.target.closest('header,footer')) return false;
+  const bounds = find('.scene').getBoundingClientRect();
+  const x = (event.clientX - bounds.left) * 580 / bounds.width;
+  const y = (event.clientY - bounds.top) * 830 / bounds.height;
+  const distance = Math.abs(x - 290);
+  if (y < 0 || y > 830) return false;
+  if (y < 150) return distance <= 200 && y >= 30;
+  if (y < 296) return distance <= 20 + (y - 150) * .25;
+  if (y < 384) return distance <= 200;
+  if (y < 645) return distance <= (y >= 440 ? 252 : 230);
+  if (y < 721) return distance <= 280;
+  if (y < 782) return distance <= 276 * Math.sqrt(Math.max(0, 1 - ((y - 721) / 61) ** 2));
+  return distance <= 87;
+}
+sky.addEventListener('wheel', event => {
+  if (panel.open || transitioning || event.ctrlKey || !isOnSubject(event)) return;
+  event.preventDefault();
+  const units = event.deltaMode === 1 ? 16 : event.deltaMode === 2 ? innerHeight : 1;
+  spin((event.deltaY || event.deltaX) * units * .22);
+}, {passive:false});
+let pointer;
+let suppressClick = false;
+sky.addEventListener('pointerdown', event => {
+  if (panel.open || transitioning || event.button !== 0 ||
+      event.target.closest('header,footer,#contact') || !isOnSubject(event)) return;
+  suppressClick = false;
+  pointer = {id:event.pointerId,x:event.clientX,y:event.clientY,total:0};
+});
+sky.addEventListener('pointermove', event => {
+  if (pointer?.id !== event.pointerId) return;
+  const distance = event.clientX-pointer.x || event.clientY-pointer.y;
+  pointer.total += Math.abs(distance);
+  pointer.x = event.clientX;
+  pointer.y = event.clientY;
+  if (!isOnSubject(event)) return;
+  if (pointer.total > 7) { suppressClick = true; spin(distance*.52); }
+});
+for (const name of ['pointerup','pointercancel']) window.addEventListener(name, () => { pointer = undefined; });
+sky.addEventListener('click', event => {
+  if (suppressClick && event.detail) { event.stopPropagation(); suppressClick = false; }
+}, true);
+window.addEventListener('keydown', event => {
+  if (panel.open) return;
+  if (event.key === 'ArrowRight' || event.key === 'ArrowDown') spin(-45);
+  if (event.key === 'ArrowLeft' || event.key === 'ArrowUp') spin(45);
+});
+function resize() {
+  const scale = innerWidth < 640 ? Math.min(innerWidth / 595, innerHeight / 720) : Math.min(innerWidth / 1280, innerHeight / 956);
+  find('.scene').style.setProperty('--scale', scale);
+  find('#sky').style.setProperty('--plate-scale', scale);
+}
+window.addEventListener('resize', resize);
+resize();
+let seed = 312;
+function random() { seed = (seed*16807)%2147483647; return seed/2147483647; }
+for(let index=0;index<160;index++) {
+  const star = element('i','');
+  const size = index%12===0 ? 3.2 : 1;
+  Object.assign(star.style,{left:random()*100+'%',top:random()*88+'%',width:size+'px',height:size+'px',opacity:.26+random()*.72});
+  find('.stars').append(star);
+}
+function setTime() {
+  const time = new Intl.DateTimeFormat('en-US',{timeZone:content.timeZone,hour:'numeric',minute:'2-digit'}).format(new Date());
+  find('#clock').replaceChildren(element('div',content.city+' · '+time),element('span',content.status));
+}
+setTime();
+setInterval(setTime,15000);
+find('#glow').onclick = event => event.currentTarget.setAttribute('aria-pressed', sky.classList.toggle('flash'));
+const music = new Audio('audio/memory.mp3');
+music.loop = true;
+music.preload = 'none';
+let soundOn = false;
+find('#sound').onclick = async event => {
+  const button = event.currentTarget;
+  button.disabled = true;
+  try {
+    if (soundOn) {
+      music.pause();
+      soundOn = false;
+    } else {
+      await music.play();
+      soundOn = true;
+    }
+    button.setAttribute('aria-pressed', soundOn);
+    button.setAttribute('aria-label', soundOn ? '暂停背景音乐' : '播放背景音乐');
+    button.title = soundOn ? '暂停背景音乐' : '播放背景音乐';
+    button.textContent = soundOn ? '♫' : '♫̸';
+  } catch {
+    soundOn = false;
+    button.setAttribute('aria-pressed', 'false');
+    button.setAttribute('aria-label', '音乐播放失败，点击重试');
+    button.title = '音乐播放失败，点击重试';
+    button.textContent = '♫̸';
+  } finally {
+    button.disabled = false;
+  }
+};
+</script>
+</html>
